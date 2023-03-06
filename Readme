@@ -1,0 +1,54 @@
+1. launch  an ec2 machine with follwing specifications - 
+	- ubuntu
+	- t2.medium
+	- 15gb storage
+	- 22 port open for my ip in SG
+	
+
+2. Install Terraform and awscli on the ec2 machine. 
+	Terraform - 
+		1. sudo apt update && apt upgrade -y 
+		2. sudo apt install -y gnupg software-properties-common curl
+		3. curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -	
+		4. sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+		5. sudo apt update 
+		6. sudo apt install terraform
+	AWSLCI - 
+		1. sudo apt-get install awscli -y
+
+
+3. create a IAM role (ADMINISTRATOR ACCESS) and attach it to the ec2
+
+
+
+4. Clone the repository to the instance -
+    git clone https://github.com/samarthr8/3-tier-Infra-Using-Terraform.git
+
+
+5. Run the following commands -  
+        terraform init -: to download the terraform plugin
+        terraform plan -: to find the differnece btw current state and desired state
+		terraform apply -: to try to achive desired state
+
+
+
+6. To secure and share the backend tfstate file need to have a remote backup. S3 will be the best place to share. safe and secure.
+
+
+7. So before step 4 do this  
+        create an S3 bucket - 
+		name - tbd-c39-terraform
+		region - us east 1
+        Update the provider.tf file with the S3 backend code. (saved in terraform folder)
+        run terraform init > terraform apply
+
+
+8. create a dynamodb table, insert LockID as pratition key and update the provider.tf and run the following commands
+	    > sudo rm -r .terraform 
+	    > terraform init
+	    > terraform apply	
+
+
+
+9. So this is how you can create the basic 3 tier networking with remote backup of backend(statefile on s3) and protected with lock mechanism
+    using dynamo db. As well as create an IAM role and attching it with the ec2 instance.
