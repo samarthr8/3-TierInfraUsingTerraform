@@ -1,0 +1,4 @@
+resource "aws_key_pair" "key" {
+  key_name   = "ssh-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8LOclzkivg5mXNcNFlZwbguWxQbZjxNXY4K/gI8paZhqapgZgAfi8cAbCakNgME55CkFV1fHtL7SMkoSsi/38+afJ1yZzYMBL+jwfiXPZM6Azp4gEcNmau32QVAt1uD0wZanOq0dqj6eLh0WkPaEckeIHOeGAhxOzqxWLUaejHmtrMLpMyxJeNe3Zq0noQmTOn2lQRF3O1ELGGq8GScabAFjq22wU1mL/ExRBYkKaKQFf8m4DBJpfRI1Ldub4bsZvybNJ5BSXdfK4Pkuk3y4WwNz7TLLzKWUkcjz1BY+TDNvCC65fa6V4noYtRLxDtlC5DQIqOw45UlISCFPZK/9TQGq+2kCH9VIMfBf4jF9L5BTOfUPQHHz/iASmHuqw3P8lA4K5zxd/ywN3v5wSyFeuWlblYKztN78w3CqCEwN8oOrmeV9g+SzhOowmqLsXbF8v+T0i/U/kRRnoeHVCj84Y8WLpQZyl2rFgjTDk9oa+QeqEM9FjnfhZ0Dy/5c+IjHM= samarth@samarth-HP-Pavilion-Notebook-PC"
+}
