@@ -1,3 +1,32 @@
+Project: Created infrastructure for a 3 tier application along with compute, storage, containerisation tools, databases using Terraform for various 
+         prod and non-prod environments using workspaces. 
+
+To do this project, I followed these steps:
+
+1. I created the basic 3 tier architecture using modules in Terraform. Modules are reusable components that can be used to create and manage   
+   resources. I used variables to make my code more flexible and configurable for different environments.
+
+2. I saved the .tfstate file (backend file) to a remote location (S3) protected with DynamoDB locking mechanism. The .tfstate file stores the state 
+   of the infrastructure that Terraform manages. S3 is a cloud storage service that can store the state file securely and reliably. DynamoDB is a  
+   key-value database that can provide locking to prevent concurrent modifications of the state file by multiple users or processes.
+
+3. I created .tfvars files for every different environment. .tfvars files are files that contain values for variables that can be passed to 
+   Terraform commands. They allow me to customize the configuration for each environment without changing the main code.
+
+4. I created var.tf to mention all the variables. var.tf is a file that defines the variables that are used in the configuration. It specifies the 
+   name, type, description, and default value of each variable.
+
+5. Then I used workspaces concept to create different workspaces for each environment . Workspaces are separate instances of state data inside the 
+   same Terraform working directory
+		1. They allow me to manage multiple sets of non-overlapping resources with the same configuration
+		2. For example, I can have a workspace for development, testing, and production environments.
+
+6. Then I used terraform apply -var-file="env.tfvars" command to apply the configuration to the selected workspace. This command reads the values 
+   from the .tfvars file and passes them to the variables in the configuration. It then creates or updates the resources in the corresponding 
+   environment according to the state file.
+
+
+Step by Step Process
 1. launch  an ec2 machine with follwing specifications - 
 	- ubuntu
 	- t2.medium
